@@ -1,11 +1,11 @@
 /*
-    El siguiente programa simula una cola de la caja de una tienda para atender a sus clientes.
-    Ejecútalo varias veces cambiando los parámetros de tiempo hasta que entiendas bien su
-    funcionamiento. El cajero tarda entre 2 y 10 minutos en atender a cada cliente. Los clientes llegan a
-    la cola entre 3 y 7 minutos.
+    Modifica el programa anterior sabiendo que el cajero tarde entre 3 y 12 minutos en atender
+    a un cliente y además, si un cliente tiene 5 o más clientes delante de él en la cola (incluido el que
+    están atendiendo), se marchará sin comprar nada.
  */
-package dam107t9e10;
+package dam107t9e11;
 
+import dam107t9e10.*;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Scanner;
@@ -40,7 +40,10 @@ public class Main {
             }
             //se añade un nuevo cliente a a la lista (instante aleatorio)
             if (t == instanteSiguCliente) {
-                cola.addLast(random.nextInt(9) + 2); 
+                if(cola.size()<5)
+                    cola.addLast(random.nextInt(10) + 3);
+                else
+                    System.out.println("Un cliente se ha marchado. La cola es demasiado grande");
                 //se genera el instante de llegada del próximo cliente
                 instanteSiguCliente += random.nextInt(5) + 3;
             }
